@@ -1,1 +1,1 @@
-# mvp_quarta_sprint_backend
+# MVP Sprint: Qualidade de Software, Segurança e Sistemas Inteligentes - Backend
