@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 from sqlalchemy.exc import IntegrityError
 
-from model import *
+from models import *
 # from logger import logger
 from schemas import *
 from flask_cors import CORS
@@ -25,3 +25,17 @@ individuo_tag = Tag(
     name="IndividuoGenZ",
     description="Adição, visualização, remoção e predição de pacientes com Diabetes",
 )
+
+@app.get("/", tags=[home_tag])
+def home():
+    """Redireciona para o index.html do frontend."""
+    return redirect("/front/index.html")
+
+# Rota para documentação OpenAPI
+@app.get("/docs", tags=[home_tag])
+def docs():
+    """Redireciona para /openapi, tela que permite a escolha do estilo de documentação."""
+    return redirect("/openapi")
+
+if __name__ == "__main__":
+    app.run(debug=True)
