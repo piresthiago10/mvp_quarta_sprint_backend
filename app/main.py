@@ -4,9 +4,9 @@ from urllib.parse import unquote
 
 from sqlalchemy.exc import IntegrityError
 
-from models import *
+from app.models import *
 # from logger import logger
-from schemas import *
+from app.schemas import *
 from flask_cors import CORS
 
 # Instanciando o objeto OpenAPI

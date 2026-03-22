@@ -4,13 +4,13 @@ from sqlalchemy import create_engine
 import os
 
 # importando os elementos definidos no modelo
-from models.base import Base
-from models.individuo_gen_z import IndividuoGenZ
-from models.modelo import Model
-from models.pipeline import Pipeline
-from models.preprocessador import PreProcessador
-from models.avaliador import Avaliador
-from models.carregador import Carregador
+from app.models.base import Base
+from app.models.individuo_gen_z import IndividuoGenZ
+from app.models.model import Model
+from app.models.pipeline import Pipeline
+from app.models.preprocessador import PreProcessador
+from app.models.avaliador import Avaliador
+from app.models.carregador import Carregador
 
 db_path = "database/"
 # Verifica se o diretorio não existe
