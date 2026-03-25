@@ -4,9 +4,11 @@ from models.individuo_gen_z import IndividuoGenZ
 
 
 class IndividuoGenZSchema(BaseModel):
-    """ Define como um novo IndividuoGenZ a ser inserido deve ser representado."""
+    """Define como um novo IndividuoGenZ a ser inserido deve ser representado."""
+
     name: str = "João da Silva"
     age: int = 20
+    cpf: str = "12345678901"
     gender: int = 1
     student_working_status: int = 1
     daily_social_media_hours: float = 0.0
@@ -30,6 +32,7 @@ class IndividuoGenZSchema(BaseModel):
 
 class IndividuoGenZViewSchema(BaseModel):
     """Define como um IndividuoGenZ será retornado."""
+
     id: int = 1
     name: str = "João da Silva"
     age: int = 20
@@ -52,31 +55,39 @@ class IndividuoGenZViewSchema(BaseModel):
     motivation_level: float = 0.0
     emotional_fatigue_score: float = 0.0
     wellbeing_index: float = 0.0
-    resultado: str = "Baixo"
+    outcome: str = "Baixo"
 
 
 class IndividuoGenZBuscaSchema(BaseModel):
     """Define como deve ser a estrutura que representa a busca.
     Ela será feita com base no nome do IndividuoGenZ.
     """
+
     name: str = "João da Silva"
 
 
 class ListaIndividuosGenZBuscaSchema(BaseModel):
-    """Define como uma lista de IndividuosGenZ será representada.
-    """
+    """Define como uma lista de IndividuosGenZ será representada."""
+
     individuos: List[IndividuoGenZViewSchema]
+
+
+class IndividuoGenZDeleteSchema(BaseModel):
+    """Define como um paciente para deleção será representado"""
+
+    name: str = "Maria"
 
 
 def apresenta_individuo_gen_z(individuo_gen_z: IndividuoGenZ):
     """Retorna uma representação do IndividuoGenZ seguindo o schema definido em
-        IndividuoGenZViewSchema.
+    IndividuoGenZViewSchema.
     """
 
     return {
         "id": individuo_gen_z.id,
         "name": individuo_gen_z.name,
         "age": individuo_gen_z.age,
+        "cpf": individuo_gen_z.cpf,
         "gender": individuo_gen_z.gender,
         "student_working_status": individuo_gen_z.student_working_status,
         "daily_social_media_hours": individuo_gen_z.daily_social_media_hours,
@@ -96,13 +107,13 @@ def apresenta_individuo_gen_z(individuo_gen_z: IndividuoGenZ):
         "motivation_level": individuo_gen_z.motivation_level,
         "emotional_fatigue_score": individuo_gen_z.emotional_fatigue_score,
         "wellbeing_index": individuo_gen_z.wellbeing_index,
-        "resultado": individuo_gen_z.resultado
+        "outcome": individuo_gen_z.outcome,
     }
 
 
 def apresenta_individuos_gen_z(individuos_gen_z: List[IndividuoGenZ]):
-    """ Retorna uma representação do IndividuoGenZ seguindo o schema definido em
-        IndividuoGenZViewSchema.
+    """Retorna uma representação do IndividuoGenZ seguindo o schema definido em
+    IndividuoGenZViewSchema.
     """
     result = []
     for individuo_gen_z in individuos_gen_z:
