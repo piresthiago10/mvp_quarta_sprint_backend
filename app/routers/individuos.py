@@ -127,3 +127,23 @@ def list_individuos():
     result = [{**i} for i in individuos]
 
     return jsonify(result)
+
+@individuo_bp.route("/individuos/<name>", methods=["GET"])
+def get_individuo_by_name(name):
+    individuo = IndividuoGenZ.query.filter_by(name=name).first()
+
+    if not individuo:
+        return {"message": "IndividuoGenZ não encontrado"}, 404
+    return apresenta_individuo_gen_z(individuo)
+
+@individuo_bp.route("/individuos/<id>", methods=["DELETE"])
+def delete_individuo(id):
+    individuo = IndividuoGenZ.query.filter_by(id=id).first()
+
+    if not individuo:
+        return {"message": "IndividuoGenZ nao encontrado"}, 404
+
+    db.session.delete(individuo)
+    db.session.commit()
+
+    return {"message": "IndividuoGenZ removido"}, 200

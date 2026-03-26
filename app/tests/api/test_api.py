@@ -32,11 +32,11 @@ def test_add_patient_prediction(client, db_session, sample_individuo_gen_z_data)
     """Testa a adição de um IndividuoGenZ com predição"""
     # Primeiro, vamos limpar qualquer paciente existente com o mesmo nome
 
-    individuo_baixo_risco = sample_individuo_gen_z_data[0]
+    individuo_teste = sample_individuo_gen_z_data[0]
     # Agora testamos a adição
     response = client.post(
         "/individuos",
-        data=json.dumps(individuo_baixo_risco),
+        data=json.dumps(individuo_teste),
         content_type="application/json",
     )
 
@@ -44,26 +44,26 @@ def test_add_patient_prediction(client, db_session, sample_individuo_gen_z_data)
     data = json.loads(response.data)
 
     # Verifica se o paciente foi criado com todas as informações
-    assert data["name"] == individuo_baixo_risco["name"]
-    assert data["age"] == individuo_baixo_risco["age"]
-    assert data["cpf"] == individuo_baixo_risco["cpf"]
+    assert data["name"] == individuo_teste["name"]
+    assert data["age"] == individuo_teste["age"]
+    assert data["cpf"] == individuo_teste["cpf"]
     assert (
         data["student_working_status"]
-        == individuo_baixo_risco["student_working_status"]
+        == individuo_teste["student_working_status"]
     )
     assert (
         data["daily_social_media_hours"]
-        == individuo_baixo_risco["daily_social_media_hours"]
+        == individuo_teste["daily_social_media_hours"]
     )
-    assert data["screen_time_hours"] == individuo_baixo_risco["screen_time_hours"]
+    assert data["screen_time_hours"] == individuo_teste["screen_time_hours"]
     assert (
         data["night_scrolling_frequency"]
-        == individuo_baixo_risco["night_scrolling_frequency"]
+        == individuo_teste["night_scrolling_frequency"]
     )
-    assert data["online_gaming_hours"] == individuo_baixo_risco["online_gaming_hours"]
+    assert data["online_gaming_hours"] == individuo_teste["online_gaming_hours"]
     assert (
         data["content_type_preference"]
-        == individuo_baixo_risco["content_type_preference"]
+        == individuo_teste["content_type_preference"]
     )
 
     # Verifica se a predição foi feita (outcome deve estar presente)
@@ -73,3 +73,42 @@ def test_add_patient_prediction(client, db_session, sample_individuo_gen_z_data)
         "Médio risco de burnout",
         "Alto risco de burnout",
     ]
+
+def test_get_individuo_by_name(client, db_session, sample_individuo_gen_z_data):
+    """Testa a busca de um IndividuoGenZ por nome"""
+
+    individuo_teste = sample_individuo_gen_z_data[0]
+    response = client.post(
+        "/individuos",
+        data=json.dumps(individuo_teste),
+        content_type="application/json",
+    )
+    assert response.status_code == 201
+
+    # Verifica se um individuo foi encontrado
+    response = client.get(f"/individuos/{individuo_teste['name']}")
+    assert response.status_code == 200
+    data = json.loads(response.data)
+
+    assert data["name"] == individuo_teste["name"]
+    
+    # Verifica se um individuo nao foi encontrado
+    response = client.get("/individuos/invalid_name")
+    assert response.status_code == 404
+    
+def test_delete_individuo(client, db_session, sample_individuo_gen_z_data):
+    """Testa a exclusão de um IndividuoGenZ"""
+    individuo_teste = IndividuoGenZ(**sample_individuo_gen_z_data[0])
+    db_session.session.add(individuo_teste)
+    db_session.session.commit()
+
+    # select individuo criado do banco
+    result = db_session.session.query(IndividuoGenZ).filter_by(name=individuo_teste.name).first()
+    id_individuo = result.id
+
+    # Verifica se um individuo foi excluido
+    response = client.delete(f"/individuos/{id_individuo}")
+    assert response.status_code == 200
+    
+    result = db_session.session.query(IndividuoGenZ).filter_by(id=id_individuo).first()
+    assert result is None
