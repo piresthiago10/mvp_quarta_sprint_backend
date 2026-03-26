@@ -124,9 +124,9 @@ def create_individuo():
 def list_individuos():
     individuos = IndividuoGenZ.query.all()
 
-    result = [{**i} for i in individuos]
+    result = [i.to_dict() for i in individuos]
 
-    return jsonify(result)
+    return jsonify(result), 200
 
 @individuo_bp.route("/individuos/<name>", methods=["GET"])
 def get_individuo_by_name(name):
@@ -134,7 +134,8 @@ def get_individuo_by_name(name):
 
     if not individuo:
         return {"message": "IndividuoGenZ não encontrado"}, 404
-    return apresenta_individuo_gen_z(individuo)
+
+    return individuo.to_dict(), 200
 
 @individuo_bp.route("/individuos/<id>", methods=["DELETE"])
 def delete_individuo(id):

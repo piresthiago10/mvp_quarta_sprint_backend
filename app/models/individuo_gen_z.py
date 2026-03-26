@@ -117,3 +117,36 @@ class IndividuoGenZ(db.Model):
         # se não for informada, será a data exata da inserção no banco
         if data_insercao:
             self.data_insercao = data_insercao
+
+    def __mask_cpf(self, cpf: str) -> str:
+        if not cpf or len(cpf) != 11:
+            return None
+
+        return "***.***.***-" + cpf[-2:]
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "cpf": self.__mask_cpf(self.cpf),
+            "age": self.age,
+            "gender": self.gender,
+            "student_working_status": self.student_working_status,
+            "daily_social_media_hours": self.daily_social_media_hours,
+            "screen_time_hours": self.screen_time_hours,
+            "night_scrolling_frequency": self.night_scrolling_frequency,
+            "online_gaming_hours": self.online_gaming_hours,
+            "content_type_preference": self.content_type_preference,
+            "exercise_frequency_per_week": self.exercise_frequency_per_week,
+            "daily_sleep_hours": self.daily_sleep_hours,
+            "caffeine_intake_cups": self.caffeine_intake_cups,
+            "study_work_hours_per_day": self.study_work_hours_per_day,
+            "overthinking_score": self.overthinking_score,
+            "anxiety_score": self.anxiety_score,
+            "mood_stability_score": self.mood_stability_score,
+            "social_comparison_index": self.social_comparison_index,
+            "sleep_quality_score": self.sleep_quality_score,
+            "motivation_level": self.motivation_level,
+            "emotional_fatigue_score": self.emotional_fatigue_score,
+            "wellbeing_index": self.wellbeing_index,
+            "outcome": self.outcome
+        }
