@@ -1,5 +1,22 @@
+console.log("Script carregado com sucesso!");
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const button = document.querySelector('button[type="button"]');
+  const formSection = document.getElementById("form");
+  const descriptionSection = document.getElementById("app-description");
+
+  button.addEventListener("click", function () {
+    // mostra o formulário
+    formSection.style.display = "block";
+
+    // esconde a descrição
+    descriptionSection.style.display = "none";
+  });
+});
+
 // endpoint da API
-const API_URL = "http://localhost:8000/predict";
+const API_URL = 'http://127.0.0.1:5000';
 
 // captura o formulário
 const form = document.querySelector("#wellness-form");
@@ -10,7 +27,7 @@ function formToJSON(formElement) {
   const data = {};
 
   for (const [key, value] of formData.entries()) {
-    data[key] = Number(value); // converte para número (necessário para ML)
+    data[key] = value;
   }
 
   return data;
@@ -19,7 +36,7 @@ function formToJSON(formElement) {
 // função que chama a API
 async function sendPrediction(data) {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}/individuos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -41,6 +58,7 @@ async function sendPrediction(data) {
 
 // handler do submit
 form.addEventListener("submit", async (event) => {
+  console.log("Enviando dados...");
   event.preventDefault();
 
   const data = formToJSON(form);
