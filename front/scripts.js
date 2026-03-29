@@ -1,4 +1,7 @@
-console.log("Script carregado com sucesso!");
+const btnFazerPredicao = document.getElementById('fazer-predicao-btn');
+const btnVerResultados = document.getElementById('ver-resultados-btn');
+const btnFormVOltar = document.getElementById('inicio-btn');
+const btnFormEnviarResposta = document.getElementById('enviar-resposta-form-btn');
 
 
 document.addEventListener("DOMContentLoaded", function () {
