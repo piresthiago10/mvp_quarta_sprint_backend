@@ -1,20 +1,24 @@
 const btnFazerPredicao = document.getElementById('fazer-predicao-btn');
 const btnVerResultados = document.getElementById('ver-resultados-btn');
-const btnFormVOltar = document.getElementById('inicio-btn');
+const btnFormVoltar = document.getElementById('inicio-form-btn');
+const btnVoltarInicio = document.getElementById('inicio-btn');
 const btnFormEnviarResposta = document.getElementById('enviar-resposta-form-btn');
-
+const sectionResultado = document.getElementById('section-resultado');
+const sectionDescription = document.getElementById("app-description");
+const formSection = document.getElementById("form");
+const sectionResultados = document.getElementById("section-resultados");
+const btnInicicioResultados = document.getElementById("inicio-resultados-btn");
 
 document.addEventListener("DOMContentLoaded", function () {
   const button = document.querySelector('button[type="button"]');
   const formSection = document.getElementById("form");
-  const descriptionSection = document.getElementById("app-description");
 
   button.addEventListener("click", function () {
     // mostra o formulário
     formSection.style.display = "block";
 
     // esconde a descrição
-    descriptionSection.style.display = "none";
+    sectionDescription.style.display = "none";
   });
 });
 
@@ -59,25 +63,85 @@ async function sendPrediction(data) {
   }
 }
 
+// fazer um get em /individuo
+async function getIndividuos() {
+  try {
+    const response = await fetch(`${API_URL}/individuos`);
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Erro ao consumir API:", error);
+    throw error;
+  }
+}
+
+// preencher a tabela com dados de getIndividuos()
+async function preencherTabela() {
+  try {
+    const individuos = await getIndividuos();
+    const tbody = document.querySelector("tbody");
+    tbody.innerHTML = "";
+    individuos.forEach((individuo) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${individuo.id}</td>
+        <td>${individuo.name}</td>
+        <td>${individuo.cpf}</td>
+        <td>${individuo.idade}</td>
+        <td>${individuo.genero}</td>
+        <td>${individuo.outcome}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Erro ao preencher a tabela:", error);
+  }
+}
+
+btnVerResultados.addEventListener("click", async () => {
+  await preencherTabela();
+  sectionDescription.style.display = "none";
+  sectionResultados.style.display = "block";
+});
+
 // handler do submit
-form.addEventListener("submit", async (event) => {
-  console.log("Enviando dados...");
+btnFormEnviarResposta.addEventListener("click", async (event) => {
   event.preventDefault();
-
   const data = formToJSON(form);
-
-  console.log("Dados enviados:", data);
-
   try {
     const result = await sendPrediction(data);
-
+  
     console.log("Resposta da API:", result);
-
-    document.querySelector("#resultado").innerText =
-      `Burnout Risk: ${result.prediction}`;
-
+  
+    sectionResultado.style.display = "block";
+    document.querySelector("#resultado").innerText = result.outcome;
+  
   } catch (error) {
     document.querySelector("#resultado").innerText =
       "Erro ao processar a requisição.";
   }
+  
+})
+
+function resetForm() {
+  form.reset();
+  sectionResultado.style.display = "none";
+  formSection.style.display = "none";
+  sectionDescription.style.display = "block";
+}
+
+btnVoltarInicio.addEventListener("click", () => {
+  resetForm();
+});
+
+btnFormVoltar.addEventListener("click", () => {
+  resetForm();
+});
+
+btnInicicioResultados.addEventListener("click", () => {
+  sectionDescription.style.display = "block";
+  sectionResultados.style.display = "none";
 });
