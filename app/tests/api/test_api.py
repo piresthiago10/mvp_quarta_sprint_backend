@@ -1,3 +1,5 @@
+import random
+
 import pytest
 import json
 from tests.fixtures.individuos_gen_z import sample_individuo_gen_z_data
@@ -56,15 +58,6 @@ def test_add_patient_prediction(client, db_session, sample_individuo_gen_z_data)
         == individuo_teste["daily_social_media_hours"]
     )
     assert data["screen_time_hours"] == individuo_teste["screen_time_hours"]
-    assert (
-        data["night_scrolling_frequency"]
-        == individuo_teste["night_scrolling_frequency"]
-    )
-    assert data["online_gaming_hours"] == individuo_teste["online_gaming_hours"]
-    assert (
-        data["content_type_preference"]
-        == individuo_teste["content_type_preference"]
-    )
 
     # Verifica se a predição foi feita (outcome deve estar presente)
     assert "outcome" in data
@@ -112,3 +105,6 @@ def test_delete_individuo(client, db_session, sample_individuo_gen_z_data):
     
     result = db_session.session.query(IndividuoGenZ).filter_by(id=id_individuo).first()
     assert result is None
+
+def random_float(min_val=0.0, max_val=10.0):
+    return round(random.uniform(min_val, max_val), 2)

@@ -38,34 +38,25 @@ def create_individuo():
     name = form.name
     cpf = form.cpf
     age = float(form.age)
-    gender = float(form.gender)
-    student_working_status = float(form.student_working_status)
+    gender = form.gender
+    student_working_status = form.student_working_status
     daily_social_media_hours = float(form.daily_social_media_hours)
     screen_time_hours = float(form.screen_time_hours)
-    night_scrolling_frequency = float(form.night_scrolling_frequency)
-    online_gaming_hours = float(form.online_gaming_hours)
-    content_type_preference = float(form.content_type_preference)
-    exercise_frequency_per_week = float(form.exercise_frequency_per_week)
-    daily_sleep_hours = float(form.daily_sleep_hours)
-    caffeine_intake_cups = float(form.caffeine_intake_cups)
-    study_work_hours_per_day = float(form.study_work_hours_per_day)
-    overthinking_score = float(form.overthinking_score)
-    anxiety_score = float(form.anxiety_score)
-    mood_stability_score = float(form.mood_stability_score)
-    social_comparison_index = float(form.social_comparison_index)
     sleep_quality_score = float(form.sleep_quality_score)
+    daily_sleep_hours = float(form.daily_sleep_hours)
     motivation_level = float(form.motivation_level)
     emotional_fatigue_score = float(form.emotional_fatigue_score)
-    wellbeing_index = float(form.wellbeing_index)
-
+    content_type_preference = form.content_type_preference
+    
     X_input = preprocessador.preparar_form(form)
     model_path = "app/machine_learning/pipelines/svm_gen_z_pipeline.pkl"
     modelo = pipeline.carrega_pipeline(model_path)
     outcome = modelo.predict(X_input)
+
     mapa = {
-        0: "Baixo risco de burnout",
-        1: "Médio risco de burnout",
-        2: "Alto risco de burnout",
+        "Low": "Baixo risco de burnout",
+        "Medium": "Médio risco de burnout",
+        "High": "Alto risco de burnout",
     }
     resultado = mapa[outcome[0]]
 
@@ -77,21 +68,11 @@ def create_individuo():
         student_working_status=student_working_status,
         daily_social_media_hours=daily_social_media_hours,
         screen_time_hours=screen_time_hours,
-        night_scrolling_frequency=night_scrolling_frequency,
-        online_gaming_hours=online_gaming_hours,
-        content_type_preference=content_type_preference,
-        exercise_frequency_per_week=exercise_frequency_per_week,
         daily_sleep_hours=daily_sleep_hours,
-        caffeine_intake_cups=caffeine_intake_cups,
-        study_work_hours_per_day=study_work_hours_per_day,
-        overthinking_score=overthinking_score,
-        anxiety_score=anxiety_score,
-        mood_stability_score=mood_stability_score,
-        social_comparison_index=social_comparison_index,
         sleep_quality_score=sleep_quality_score,
         motivation_level=motivation_level,
         emotional_fatigue_score=emotional_fatigue_score,
-        wellbeing_index=wellbeing_index,
+        content_type_preference=content_type_preference,
         outcome=resultado,
     )
     logger.debug(f"Adicionando produto de nome: '{individuo.name}'")

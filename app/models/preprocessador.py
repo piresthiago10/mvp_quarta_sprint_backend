@@ -43,37 +43,16 @@ class PreProcessador:
                     "Gender": form.gender,
                     "Student_Working_Status": form.student_working_status,
                     "Daily_Social_Media_Hours": form.daily_social_media_hours,
-                    "Screen_Time_Hours": form.screen_time_hours,
-                    "Night_Scrolling_Frequency": form.night_scrolling_frequency,
-                    "Online_Gaming_Hours": form.online_gaming_hours,
-                    "Content_Type_Preference": form.content_type_preference,
-                    "Exercise_Frequency_per_Week": form.exercise_frequency_per_week,
                     "Daily_Sleep_Hours": form.daily_sleep_hours,
-                    "Caffeine_Intake_Cups": form.caffeine_intake_cups,
-                    "Study_Work_Hours_per_Day": form.study_work_hours_per_day,
-                    "Overthinking_Score": form.overthinking_score,
-                    "Anxiety_Score": form.anxiety_score,
-                    "Mood_Stability_Score": form.mood_stability_score,
-                    "Social_Comparison_Index": form.social_comparison_index,
+                    "Screen_Time_Hours": form.screen_time_hours,
                     "Sleep_Quality_Score": form.sleep_quality_score,
                     "Motivation_Level": form.motivation_level,
                     "Emotional_Fatigue_Score": form.emotional_fatigue_score,
-                    "Wellbeing_Index": form.wellbeing_index,
+                    "Content_Type_Preference": form.content_type_preference
                 }
             ]
         )
-        scaler = pickle.load(
-            open("app/machine_learning/scalers/minmax_scaler_gen_z.pkl", "rb")
-        )
-        X_input = scaler.transform(X_input)
-        print(X_input)
+        X_input['Sleep_Efficiency'] = X_input['Sleep_Quality_Score'] / (X_input['Daily_Sleep_Hours'] + 1)
+        X_input['Screen_Time_Ratio'] = X_input['Screen_Time_Hours'] / (24 - X_input['Daily_Sleep_Hours'])
+        X_input['Wellbeing_Balance'] = X_input['Motivation_Level'] - X_input['Emotional_Fatigue_Score']
         return X_input
-
-    def scaler(self, X_train):
-        """Normaliza os dados."""
-        # normalização/padronização
-        scaler = pickle.load(
-            open("./machine_learning/scalers/minmax_scaler_gen_z.pkl", "rb")
-        )
-        reescaled_X_train = scaler.transform(X_train)
-        return reescaled_X_train
