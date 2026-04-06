@@ -8,6 +8,8 @@ const sectionDescription = document.getElementById("app-description");
 const formSection = document.getElementById("form");
 const sectionResultados = document.getElementById("section-resultados");
 const btnInicicioResultados = document.getElementById("inicio-resultados-btn");
+const modal = document.getElementById("modal-individuo");
+const fecharModal = document.getElementById("fechar-modal");
 
 document.addEventListener("DOMContentLoaded", function () {
   const button = document.querySelector('button[type="button"]');
@@ -90,9 +92,14 @@ async function preencherTabela() {
         <td>${individuo.id}</td>
         <td>${individuo.name}</td>
         <td>${individuo.cpf}</td>
-        <td>${individuo.idade}</td>
-        <td>${individuo.genero}</td>
+        <td>${individuo.age}</td>
+        <td>${individuo.gender}</td>
         <td>${individuo.outcome}</td>
+        <td>
+          <a href="#" onclick="pesquisarIndividuo('${individuo.id}')">
+            Detalhes
+          </a>
+        </td>
       `;
       tbody.appendChild(row);
     });
@@ -113,18 +120,77 @@ btnFormEnviarResposta.addEventListener("click", async (event) => {
   const data = formToJSON(form);
   try {
     const result = await sendPrediction(data);
-  
+
     console.log("Resposta da API:", result);
-  
+
     sectionResultado.style.display = "block";
     document.querySelector("#resultado").innerText = result.outcome;
-  
+
   } catch (error) {
     document.querySelector("#resultado").innerText =
       "Erro ao processar a requisição.";
   }
-  
+
 })
+
+async function pesquisarIndividuo(idIndividuo) {
+  try {
+    const container = document.getElementById("modal-conteudo");
+    container.innerHTML = "<p>Carregando...</p>";
+
+    const response = await fetch(`${API_URL}/individuos/${idIndividuo}`);
+    
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    container.innerHTML = `
+      <h2>Detalhes do Indivíduo</h2>
+
+      <table border="1" style="width:100%; border-collapse: collapse;">
+        <tbody>
+          <tr><th>ID</th><td>${data.id}</td></tr>
+          <tr><th>Nome</th><td>${data.name}</td></tr>
+          <tr><th>CPF</th><td>${data.cpf}</td></tr>
+          <tr><th>Idade</th><td>${data.age}</td></tr>
+          <tr><th>Gênero</th><td>${data.gender}</td></tr>
+          <tr><th>Status</th><td>${data.student_working_status}</td></tr>
+
+          <tr><th>Preferência de Conteúdo</th><td>${data.content_type_preference}</td></tr>
+          <tr><th>Tempo de Tela (h)</th><td>${data.screen_time_hours}</td></tr>
+          <tr><th>Horas de Sono</th><td>${data.daily_sleep_hours}</td></tr>
+          <tr><th>Qualidade do Sono</th><td>${data.sleep_quality_score}</td></tr>
+
+          <tr><th>Motivação</th><td>${data.motivation_level}</td></tr>
+          <tr><th>Fadiga Emocional</th><td>${data.emotional_fatigue_score}</td></tr>
+
+          <tr>
+            <th>Risco de Burnout</th>
+            <td><strong>${data.outcome}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    `;
+
+    document.getElementById("modal-individuo").style.display = "flex";
+
+  } catch (error) {
+    console.error("Erro ao consumir API:", error);
+  }
+}
+
+fecharModal.onclick = () => {
+  modal.style.display = "none";
+};
+
+// Fecha ao clicar fora
+window.onclick = (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
 
 function resetForm() {
   form.reset();

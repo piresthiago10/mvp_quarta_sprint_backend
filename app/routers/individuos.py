@@ -107,9 +107,9 @@ def list_individuos():
 
     return jsonify(result), 200
 
-@individuo_bp.route("/individuos/<name>", methods=["GET"])
-def get_individuo_by_name(name):
-    individuo = IndividuoGenZ.query.filter_by(name=name).first()
+@individuo_bp.route("/individuos/<id>", methods=["GET"])
+def get_individuo_by_id(id):
+    individuo = IndividuoGenZ.query.filter_by(id=id).first()
 
     if not individuo:
         return {"message": "IndividuoGenZ não encontrado"}, 404

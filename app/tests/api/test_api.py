@@ -63,9 +63,8 @@ def test_add_patient_prediction(client, db_session, sample_individuo_gen_z_data)
         "Alto risco de burnout",
     ]
 
-def test_get_individuo_by_name(client, db_session, sample_individuo_gen_z_data):
+def test_get_individuo_by_id(client, db_session, sample_individuo_gen_z_data):
     """Testa a busca de um IndividuoGenZ por nome"""
-
     individuo_teste = sample_individuo_gen_z_data[0]
     response = client.post(
         "/individuos",
@@ -75,7 +74,7 @@ def test_get_individuo_by_name(client, db_session, sample_individuo_gen_z_data):
     assert response.status_code == 201
 
     # Verifica se um individuo foi encontrado
-    response = client.get(f"/individuos/{individuo_teste['name']}")
+    response = client.get(f"/individuos/{response.json['id']}")
     assert response.status_code == 200
     data = json.loads(response.data)
 

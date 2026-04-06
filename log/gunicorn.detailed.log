@@ -1,20 +1,31 @@
-[2026-04-01 00:16:40,291] ERROR create_individuo() L119  Erro ao adicionar IndividuoGenZ 'individuo_0' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L119 
-Traceback (most recent call last):
-  File "/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py", line 114, in create_individuo
-    return apresenta_individuo_gen_z(individuo), 201
-           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
-  File "/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/schemas/individuo_gen_z_schema.py", line 109, in apresenta_individuo_gen_z
-    "wellbeing_index": individuo_gen_z.wellbeing_index,
-                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'IndividuoGenZ' object has no attribute 'wellbeing_index'
-[2026-04-01 00:25:54,188] WARNING create_individuo() L104  IndividuoGenZ já existente na base: 'João da Silva' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L104 
-[2026-04-01 00:26:50,951] WARNING create_individuo() L104  IndividuoGenZ já existente na base: 'João da Silva' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L104 
-[2026-04-06 11:49:08,370] ERROR create_individuo() L97   Erro ao adicionar IndividuoGenZ 'John Doe' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L97  
-Traceback (most recent call last):
-  File "/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py", line 92, in create_individuo
-    return apresenta_individuo_gen_z(individuo), 201
-           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
-  File "/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/schemas/individuo_gen_z_schema.py", line 72, in apresenta_individuo_gen_z
-    "daily_social_media_hours": individuo_gen_z.daily_social_media_hours,
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'IndividuoGenZ' object has no attribute 'daily_social_media_hours'
+[2026-04-06 17:43:13,199] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:43:13] "GET /front/src/css/custom.css HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:43:13,204] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:43:13] "[36mGET /front/scripts.js HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:43:14,813] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:43:14] "GET /individuos HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:43:15,961] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:43:15] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:29,307] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:29] "GET /front/index.html HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:29,333] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:29] "GET /front/src/css/custom.css HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:29,337] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:29] "[36mGET /front/scripts.js HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:30,769] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:30] "GET /individuos HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:31,833] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:31] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:49,563] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:49] "[36mGET /front/src/css/custom.css HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:44:49,577] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:44:49] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:46:41,187] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:46:41] "[36mGET /front/index.html HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:46:41,210] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:46:41] "[36mGET /front/scripts.js HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:46:41,210] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:46:41] "GET /front/src/css/custom.css HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:46:41,218] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:46:41] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:46:42,310] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:46:42] "GET /individuos HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:46:43,303] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:46:43] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:48:43,755] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:48:43] "[36mGET /front/index.html HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:48:43,784] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:48:43] "GET /front/scripts.js HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:48:43,784] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:48:43] "[36mGET /front/src/css/custom.css HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:48:45,095] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:48:45] "GET /individuos HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:48:46,085] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:48:46] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:50:54,848] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:50:54] "GET /front/index.html HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:50:54,876] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:50:54] "[36mGET /front/src/css/custom.css HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:50:54,877] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:50:54] "[36mGET /front/scripts.js HTTP/1.1[0m" 304 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:50:56,213] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:50:56] "GET /individuos HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:50:57,185] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:50:57] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:51:00,015] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:51:00] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:51:01,610] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:51:01] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:51:03,924] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:51:03] "GET /individuos HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  
+[2026-04-06 17:51:04,814] INFO _log() L97   127.0.0.1 - - [06/Apr/2026 17:51:04] "GET /individuos/1 HTTP/1.1" 200 - - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/venv/lib/python3.14/site-packages/werkzeug/_internal.py L97  

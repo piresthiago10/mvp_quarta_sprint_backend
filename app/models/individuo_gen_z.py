@@ -80,6 +80,7 @@ class IndividuoGenZ(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "name": self.name,
             "cpf": self.__mask_cpf(self.cpf),
             "age": self.age,
