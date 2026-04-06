@@ -9,3 +9,12 @@ Traceback (most recent call last):
 AttributeError: 'IndividuoGenZ' object has no attribute 'wellbeing_index'
 [2026-04-01 00:25:54,188] WARNING create_individuo() L104  IndividuoGenZ já existente na base: 'João da Silva' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L104 
 [2026-04-01 00:26:50,951] WARNING create_individuo() L104  IndividuoGenZ já existente na base: 'João da Silva' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L104 
+[2026-04-06 11:49:08,370] ERROR create_individuo() L97   Erro ao adicionar IndividuoGenZ 'John Doe' - call_trace=/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py L97  
+Traceback (most recent call last):
+  File "/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/routers/individuos.py", line 92, in create_individuo
+    return apresenta_individuo_gen_z(individuo), 201
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/thiago/Desenvolvimento/mvp_quarta_sprint_backend/app/schemas/individuo_gen_z_schema.py", line 72, in apresenta_individuo_gen_z
+    "daily_social_media_hours": individuo_gen_z.daily_social_media_hours,
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'IndividuoGenZ' object has no attribute 'daily_social_media_hours'

@@ -11,7 +11,6 @@ class IndividuoGenZSchema(BaseModel):
     cpf: str = "12345678901"
     gender: str = 'Male'
     student_working_status: str = 'Student'
-    daily_social_media_hours: float = 0.0
     daily_sleep_hours: float = 7
     screen_time_hours: float = 0.0
     sleep_quality_score: float = 0.0
@@ -28,7 +27,6 @@ class IndividuoGenZViewSchema(BaseModel):
     age: int = 20
     gender: int = 1
     student_working_status: str = 'Student'
-    daily_social_media_hours: float = 0.0
     screen_time_hours: float = 0.0
     sleep_quality_score: float = 0.0
     motivation_level: float = 0.0
@@ -69,7 +67,6 @@ def apresenta_individuo_gen_z(individuo_gen_z: IndividuoGenZ):
         "cpf": individuo_gen_z.cpf,
         "gender": individuo_gen_z.gender,
         "student_working_status": individuo_gen_z.student_working_status,
-        "daily_social_media_hours": individuo_gen_z.daily_social_media_hours,
         "screen_time_hours": individuo_gen_z.screen_time_hours,
         "sleep_quality_score": individuo_gen_z.sleep_quality_score,
         "motivation_level": individuo_gen_z.motivation_level,

@@ -30,7 +30,6 @@ class IndividuoGenZ(db.Model):
         gender: str,
         student_working_status: str,
         daily_sleep_hours: int,
-        daily_social_media_hours: float,
         screen_time_hours: float,
         sleep_quality_score: float,
         motivation_level: float,
@@ -48,7 +47,6 @@ class IndividuoGenZ(db.Model):
             age (int): idade
             gender (str): sexo
             student_working_status (str): status de estudante
-            daily_social_media_hours (float): horas diarias de social media
             screen_time_hours (float): horas diarias de screen time
             sleep_quality_score (float): pontuação de qualidade de sono
             motivation_level (float): nível de motivação
@@ -62,7 +60,6 @@ class IndividuoGenZ(db.Model):
         self.age = age
         self.gender = gender
         self.student_working_status = student_working_status
-        self.daily_social_media_hours = daily_social_media_hours
         self.screen_time_hours = screen_time_hours
         self.content_type_preference = content_type_preference
         self.sleep_quality_score = sleep_quality_score
@@ -88,7 +85,6 @@ class IndividuoGenZ(db.Model):
             "age": self.age,
             "gender": self.gender,
             "student_working_status": self.student_working_status,
-            "daily_social_media_hours": self.daily_social_media_hours,
             "screen_time_hours": self.screen_time_hours,
             "content_type_preference": self.content_type_preference,
             "sleep_quality_score": self.sleep_quality_score,

@@ -10,12 +10,11 @@ def sample_individuo_gen_z_data():
             "cpf": "12345678900",
             "gender": 'Male',
             "student_working_status": "Student",
-            "daily_social_media_hours": 0.40,
             "screen_time_hours": 5.0,
             "sleep_quality_score": 9.5,
             "daily_sleep_hours": 10,
             "motivation_level": 6.80,
             "emotional_fatigue_score": 3.28,
-            'Content_Type_Preference': 'Educational'
+            "content_type_preference": "Educational"
         }
     ]

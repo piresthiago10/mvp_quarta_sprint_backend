@@ -53,10 +53,6 @@ def test_add_patient_prediction(client, db_session, sample_individuo_gen_z_data)
         data["student_working_status"]
         == individuo_teste["student_working_status"]
     )
-    assert (
-        data["daily_social_media_hours"]
-        == individuo_teste["daily_social_media_hours"]
-    )
     assert data["screen_time_hours"] == individuo_teste["screen_time_hours"]
 
     # Verifica se a predição foi feita (outcome deve estar presente)

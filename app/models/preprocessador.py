@@ -1,5 +1,4 @@
 from sklearn.model_selection import train_test_split
-import pickle
 import numpy as np
 import pandas as pd
 
@@ -42,7 +41,6 @@ class PreProcessador:
                     "Age": form.age,
                     "Gender": form.gender,
                     "Student_Working_Status": form.student_working_status,
-                    "Daily_Social_Media_Hours": form.daily_social_media_hours,
                     "Daily_Sleep_Hours": form.daily_sleep_hours,
                     "Screen_Time_Hours": form.screen_time_hours,
                     "Sleep_Quality_Score": form.sleep_quality_score,

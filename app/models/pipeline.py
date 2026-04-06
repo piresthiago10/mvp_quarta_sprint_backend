@@ -1,4 +1,4 @@
-import pickle
+import cloudpickle
 
 
 class Pipeline:
@@ -11,5 +11,5 @@ class Pipeline:
         """Carregamos o pipeline construído durante a fase de treinamento"""
 
         with open(path, "rb") as file:
-            self.pipeline = pickle.load(file)
+            self.pipeline = cloudpickle.load(file)
         return self.pipeline

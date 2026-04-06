@@ -1,4 +1,4 @@
-import pickle
+import cloudpickle
 
 
 class Model:
@@ -12,7 +12,7 @@ class Model:
 
         if path.endswith(".pkl"):
             with open(path, "rb") as file:
-                self.model = pickle.load(file)
+                self.model = cloudpickle.load(file)
         else:
             raise Exception("Formato de arquivo não suportado")
         return self.model

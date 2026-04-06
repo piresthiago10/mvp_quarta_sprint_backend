@@ -40,7 +40,6 @@ def create_individuo():
     age = float(form.age)
     gender = form.gender
     student_working_status = form.student_working_status
-    daily_social_media_hours = float(form.daily_social_media_hours)
     screen_time_hours = float(form.screen_time_hours)
     sleep_quality_score = float(form.sleep_quality_score)
     daily_sleep_hours = float(form.daily_sleep_hours)
@@ -66,7 +65,6 @@ def create_individuo():
         age=age,
         gender=gender,
         student_working_status=student_working_status,
-        daily_social_media_hours=daily_social_media_hours,
         screen_time_hours=screen_time_hours,
         daily_sleep_hours=daily_sleep_hours,
         sleep_quality_score=sleep_quality_score,
