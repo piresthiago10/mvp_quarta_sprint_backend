@@ -52,7 +52,7 @@ class ListaIndividuosGenZBuscaSchema(BaseModel):
 class IndividuoGenZDeleteSchema(BaseModel):
     """Define como um paciente para deleção será representado"""
 
-    name: str = "Maria"
+    message: str = "mensagem de sucesso"
 
 
 def apresenta_individuo_gen_z(individuo_gen_z: IndividuoGenZ):
@@ -85,3 +85,6 @@ def apresenta_individuos_gen_z(individuos_gen_z: List[IndividuoGenZ]):
         result.append(apresenta_individuo_gen_z(individuo_gen_z))
 
     return {"individuos_gen_z": result}
+
+class IndividuoPathSchema(BaseModel):
+    id: int
