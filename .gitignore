@@ -2,3 +2,4 @@
 log/*
 *.log
 app/instance/prod.db
+venv/*
