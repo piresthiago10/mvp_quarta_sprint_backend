@@ -99,12 +99,29 @@ async function preencherTabela() {
           <a href="#" onclick="pesquisarIndividuo('${individuo.id}')">
             Detalhes
           </a>
+          <a href="#" onclick="excluirIndividuo('${individuo.id}')">
+            Excluir
+          </a>
         </td>
       `;
       tbody.appendChild(row);
     });
   } catch (error) {
     console.error("Erro ao preencher a tabela:", error);
+  }
+}
+
+async function excluirIndividuo(idIndividuo) {
+  try {
+    const response = await fetch(`${API_URL}/individuos/${idIndividuo}`, {
+      method: "DELETE"
+    });
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status}`);
+    }
+    await preencherTabela();
+  } catch (error) {
+    console.error("Erro ao excluir individuo:", error);
   }
 }
 

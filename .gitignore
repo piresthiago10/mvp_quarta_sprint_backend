@@ -3,3 +3,7 @@ log/*
 *.log
 app/instance/prod.db
 venv/*
+*.db
+log/*
+log/gunicorn.detailed.log
+app/instance/prod.db
